@@ -53,7 +53,7 @@ apt-get install vim git nginx
 
 ## 4 配置多网站
 
-- 在conf.d目录下新建文件test1.conf，表示第一个网站配置
+- 在/etc/nginx/conf.d目录下新建文件test1.conf，表示第一个网站配置
 
 ```
 server {
@@ -66,7 +66,7 @@ server {
 }
 ```
 
-- 在conf.d目录下新建文件test2.conf，表示第二个网站配置
+- 在/etc/nginx/conf/conf.d目录下新建文件test2.conf，表示第二个网站配置
 
 ```
 server {
