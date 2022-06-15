@@ -55,7 +55,7 @@ apt-get install vim git nginx
 
 - 在/etc/nginx/conf.d目录下新建文件test1.conf，表示第一个网站配置
 
-```
+```c
 server {
    listen        9101;									// 要监听的端口号，端口号别和系统冲突就行
    server_name   120.48.82.24;
@@ -68,7 +68,7 @@ server {
 
 - 在/etc/nginx/conf/conf.d目录下新建文件test2.conf，表示第二个网站配置
 
-```
+```c
 server {
    listen        9102;									// 要监听的端口号，端口号别和系统冲突就行
    server_name   120.48.82.24;
@@ -92,7 +92,7 @@ server {
 
 - 重新加载nginx，修改完html后，可以调用此命令重新加载服务器来刷新页面
 
-```
+```shell
 systemctl reload nginx
 ```
 
