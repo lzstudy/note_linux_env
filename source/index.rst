@@ -10,5 +10,6 @@ Linux环境相关笔记
    :maxdepth: 3
    :titlesonly:
 
+   ubuntu/index
    misc/index
 
