@@ -5,4 +5,6 @@ Ubuntu环境
    :maxdepth: 1
 
    resource.md
+   wsl.md
    config.md
+   problem.md
