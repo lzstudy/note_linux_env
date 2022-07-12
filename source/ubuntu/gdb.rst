@@ -11,7 +11,7 @@ vscode-gdb模板_ vscode模板
 =============== ===================================================================================
 
 
-配置软件环境
+配置PC端环境
 ------------
 
 - 添加vscode gdb配置
@@ -21,15 +21,20 @@ vscode-gdb模板_ vscode模板
 
 .. image:: .images/vscode_launch_json.jpg
 
-- 推送gdbserver到开发板/usr/bin目录下(下表列出常用的arm-linux-gcc官网)
+配置嵌入式端环境
+----------------
+
+- 推送gdbserver到开发板/usr/bin目录下
+
+- 下表列出常用的arm-linux-gcc官网
 
 ========== ========================================================================================
 Linaro-gcc https://releases.linaro.org/components/toolchain/binaries
 ========== ========================================================================================
 
 
-运行调试
---------
+启动VSCODE + GDBSERVER调试
+--------------------------
 
 - 开发板端
 
@@ -39,11 +44,42 @@ Linaro-gcc https://releases.linaro.org/components/toolchain/binaries
    gdbserver 169.254.216.21:2121 main
 
 - PC端
+
     打开vscode输入F5即可进入调试
 
-.. note::
+启动GDB + GDBSERVER调试
+-----------------------
 
-   运行前要保证板子和PC相互能ping通
+- 开发板端
+
+::
+   
+   # IP地址填PC端的(非wsl ip地址)
+   gdbserver 169.254.216.21:2121 main
+
+- PC端
+
+::
+
+   $ arm-linux-gnueabi-gdb main
+   (gdb) target remote 169.254.216.77   // 开发板ip
+
+======================== ==========================================================================
+l                        查看源码
+b main.c:9               在main.c文件的第9行插入断点
+s                        单步进入
+n                        单步执行
+p                        打印变量
+show dir                 显示搜索路径
+dir /xx/xx/source        添加源码搜素路径
+info sharedlibray xxx.so 查看加载的库信息
+======================== ==========================================================================
+
+.. warning::
+
+   - PC和嵌入式板需要相互ping通
+   - vscode调试动态库只需要把动态库源码拷贝到工程下(GDB + GDBSERVER方式需要手动添加动态库源码路径)
+
 
 .. _vscode-gdb配置: http://120.48.82.24:9100/note_linux_env/tools/vscode.tar.gz
 .. _vscode-gdb模板: http://120.48.82.24:9100/note_linux_env/tools/gdb_sample.tar.gz
