@@ -80,6 +80,17 @@ info sharedlibray xxx.so 查看加载的库信息
    - PC和嵌入式板需要相互ping通
    - vscode调试动态库只需要把动态库源码拷贝到工程下(GDB + GDBSERVER方式需要手动添加动态库源码路径)
 
+调试问题汇总
+------------
+
+- 运行gdb提示无python环境
+
+::
+
+   apt-get install libpython2.7
+   sudo apt-get install libatlas3-base
+
+
 
 .. _vscode-gdb配置: http://120.48.82.24:9100/note_linux_env/tools/vscode.tar.gz
 .. _vscode-gdb模板: http://120.48.82.24:9100/note_linux_env/tools/gdb_sample.tar.gz
