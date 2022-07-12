@@ -1,11 +1,7 @@
-Ubuntu环境
+Shell语法
 ========================================
 
 .. toctree::
    :maxdepth: 1
 
-   resource
-   wsl.md
-   gdb
-   env_var.md
-   problem.md
+   cond.md
