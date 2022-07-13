@@ -74,6 +74,7 @@ x/<num><格式><对齐> addr 查看内存地址, 常用(x/40xh 0x1000)
 show dir                 显示搜索路径
 dir /xx/xx/source        添加源码搜素路径
 info sharedlibray xxx.so 查看加载的库信息
+set substitute-path o n  修改源码路径, 用于手动gdb
 ======================== ==========================================================================
 
 .. warning::
