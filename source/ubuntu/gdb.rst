@@ -70,6 +70,7 @@ b main.c:9               在main.c文件的第9行插入断点
 s                        单步进入
 n                        单步执行
 p                        打印变量
+x/<num><格式><对齐> addr 查看内存地址, 常用(x/40xh 0x1000)
 show dir                 显示搜索路径
 dir /xx/xx/source        添加源码搜素路径
 info sharedlibray xxx.so 查看加载的库信息
