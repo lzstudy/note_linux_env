@@ -11,6 +11,7 @@ Linux环境相关笔记
    :titlesonly:
 
    ubuntu/index
+   embed/index
    shell/index
    misc/index
 
