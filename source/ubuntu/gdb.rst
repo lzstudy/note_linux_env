@@ -70,6 +70,10 @@ b main.c:9               在main.c文件的第9行插入断点
 s                        单步进入
 n                        单步执行
 p                        打印变量
+f                        查看栈帧
+i                        
+bt                       查看调用栈
+
 x/<num><格式><对齐> addr 查看内存地址, 常用(x/40xh 0x1000)
 show dir                 显示搜索路径
 dir /xx/xx/source        添加源码搜素路径
@@ -81,6 +85,7 @@ set substitute-path o n  修改源码路径, 用于手动gdb
 
    - PC和嵌入式板需要相互ping通
    - vscode调试动态库只需要把动态库源码拷贝到工程下(GDB + GDBSERVER方式需要手动添加动态库源码路径)
+   - vscode也可以直接调用GDB命令, 需要加入-exec, 例如(-exec l)
 
 调试问题汇总
 ------------
