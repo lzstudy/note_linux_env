@@ -10,8 +10,9 @@ Linux环境相关笔记
    :maxdepth: 3
    :titlesonly:
 
+   shell/index
    ubuntu/index
    embed/index
-   shell/index
+   mt7621/index
    misc/index
 

@@ -67,13 +67,13 @@ Linaro-gcc https://releases.linaro.org/components/toolchain/binaries
 ======================== ==========================================================================
 l                        查看源码
 b main.c:9               在main.c文件的第9行插入断点
+d                        删除全部断点
 s                        单步进入
 n                        单步执行
 p                        打印变量
 f                        查看栈帧
 i                        
 bt                       查看调用栈
-watch                    强大的查看命令
 x/<num><格式><对齐> addr 查看内存地址, 常用(x/40xh 0x1000)
 show dir                 显示搜索路径
 dir /xx/xx/source        添加源码搜素路径
@@ -81,6 +81,8 @@ info sharedlibray xxx.so 查看加载的库信息
 set substitute-path o n  修改源码路径, 用于手动gdb
 show substitute-path     查看subtitute-path
 gdb -x gdb.config        使用gdb.config文件调试
+disp <var>               每一次断点停住时, 会自动打印该变量
+watch                    查看内存命令, 采用硬件断点的方式, 平台可能会不支持
 ======================== ==========================================================================
 
 .. warning::
