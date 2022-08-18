@@ -5,3 +5,6 @@ Shell语法
    :maxdepth: 1
 
    cond.md
+   str.rst
+   misc.rst
+   web.rst

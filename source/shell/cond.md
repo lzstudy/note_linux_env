@@ -28,5 +28,17 @@ case $ARG in
     -t)
     echo "-t"
     ;;
+
+	rp*)
+	echo "rp0, rp1, rp2 ..."
+	;;
+
+	[2-5]
+	echo "the num is 2 - 5"
+	;;
+
+    *)
+    echo "unknown cmd $ARG"
+    ;;
 esac
 ```
