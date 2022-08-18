@@ -7,7 +7,7 @@ if [ $# -lt 2 ];then
     echo "usage: zwg <-e/-s/-t> <file>"
     exit 1
 else
-	echo "hello"
+    echo "hello"
 fi
 ```
 
@@ -29,13 +29,13 @@ case $ARG in
     echo "-t"
     ;;
 
-	rp*)
-	echo "rp0, rp1, rp2 ..."
-	;;
+    rp*)
+    echo "rp0, rp1, rp2 ..."
+    ;;
 
-	[2-5]
-	echo "the num is 2 - 5"
-	;;
+    [2-5]
+    echo "the num is 2 - 5"
+    ;;
 
     *)
     echo "unknown cmd $ARG"
