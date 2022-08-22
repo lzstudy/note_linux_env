@@ -17,6 +17,7 @@ Makefile_            内核ko编译模板
 
 ==================== ==============================================================================
 zwscp.tar.gz_        scp拷贝工具
+zwstr_               字符串/模板处理工具
 ==================== ==============================================================================
 
 .. _vimrc: http://120.48.82.24:9100/note_linux_env/templete/vimrc
@@ -26,5 +27,6 @@ zwscp.tar.gz_        scp拷贝工具
 .. _Makefile: http://120.48.82.24:9100/note_linux_env/templete/Makefile
 
 .. _zwscp.tar.gz: http://120.48.82.24:9100/note_linux_env/zw_tools/zwscp.tar.gz
+.. _zwstr: http://120.48.82.24:9100/note_linux_env/zw_tools/zwstr
 
 
