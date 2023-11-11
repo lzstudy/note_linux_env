@@ -1,7 +1,7 @@
-嵌入式环境
+平台 - MTK
 ========================================
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 5
 
-   problem.md
+   01_hlk7621

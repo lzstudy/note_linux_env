@@ -1,9 +1,7 @@
-百草园
+平台 - 全志
 ========================================
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 5
 
-   web.md
-   misc.md
-   work
+   01_v5

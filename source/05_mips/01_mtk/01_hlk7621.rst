@@ -1,0 +1,138 @@
+环境搭建
+========
+
+1. 基本介绍
+---------------
+
+   1. hlk7621是深圳 ``海凌科`` 的一款千兆路由模块
+   2. 处理器是采用联发科的mt7621
+   3. 系统是基于linux的openwrt
+   4. falsh采用4-32M的spi flash
+   5. ram大小为128-256M
+
+2. 源码获取
+-----------
+
+    https://mirror.tuna.tsinghua.edu.cn/lede/releases/
+
+.. note::
+
+   推荐使用19.07.2版本之后的, 此版本后的文件系统中可以找到luci相关的配置
+
+3. 源码介绍
+-----------
+
+以 19.07.2_ 为例, 镜像栈中有两个压缩包两个文件夹和一堆固件, hlk7621中的源码是不开源的, 不过都
+已经做成了模块文件或者安装包。可以拿来直接使用
+
+``openwrt-imagebuilder-19.07.2-ramips-mt7621.Linux-x86_64.tar.xz`` 
+	该压缩包用于编译生成固件, 内容不开源。
+
+``openwrt-sdk-19.07.2-ramips-mt7621_gcc-7.5.0_musl.Linux-x86_64.tar.xz``
+	该压缩包是SDK的, 主要用于生成文件系统需要的内容。
+
+``xxx.bin``
+	此类文件是固件, 一般以后缀sysupgrade.bin结尾的可以用于刷机。
+
+.. _19.07.2: https://mirror.tuna.tsinghua.edu.cn/lede/releases/19.07.2/targets/ramips/mt7621/
+
+4. 镜像编译
+-----------
+
+.. code:: c
+
+   # 进入imagebuilder目录
+   make image
+
+   # 编译后会生成bin目录, 此目录下搜索v60, 既是我们要的固件
+
+5. 自定义文件系统
+-----------------
+
+5.1 使用源码方式
+****************
+
+imagebuilder源码中会生成一个默认的rootfs, 只需要修改底层Makefile, 在build_image最后添加shell命令
+拷贝自己的文件系统覆盖默认的(路径 $(buildimage)/build_dir/target-mipsel_24kc_musl/root-ramips))
+
+5.2 解压镜像修改
+****************
+
+使用bin文件分析工具 ``binwalk`` 和 ``squashfs`` 来将文件系统rootfs解析出来, 再用mkimage工具封装
+成新的固件
+
+.. code:: c
+
+   # 安装程序
+   sudo apt-get install binwalk
+   sudo apt-get install squashfs-tools
+
+   # 解析固件
+   binwalk -e xxx.bin
+
+   # 生成文件系统(进入刚生成的目录)
+   unsquashfs -dest what-in-bin *.squashfs
+
+   # what-in-bin就是文件系统
+
+   # 修改文件系统后, 再用buildimage来封包
+
+5.3 使用工具firmware-mod-kit
+****************************
+
+    https://www.pianshen.com/article/6225683209/
+
+6 GDB环境搭建
+---------------------
+
+6.1 下载gdb
+***********************
+
+=========== ==========================
+gdb-7.3.1_   gdb源码
+gdbserver_   gdbserver
+=========== ==========================
+
+.. _gdb-7.3.1: http://120.48.82.24:9100/note_linux_env/tools/gdb-7.3.1.tar.gz
+.. _gdbserver: http://120.48.82.24:9100/note_linux_env/tools/gdbserver-mt7621
+
+6.2 编译
+*******************
+
+::
+
+   # 解压gdb
+   tar -vxf gdb-7.3.1.tar.gz
+
+   # 配置编译信息
+   CC=/opt/mips-openwrt-mt7621/staging_dir/toolchain-mipsel_24kc_gcc-7.3.0_musl/bin/mipsel-openwrt-linux-gcc  CXX=/opt/mips-openwrt-mt7621/staging_dir/toolchain-mipsel_24kc_gcc-7.3.0_musl/bin/mipsel-openwrt-linux-g++ ./configure --target=mipsel-linux --host=mipsel-linux
+
+   # 修改Makefile 屏蔽掉-error
+   # WERROR_CFLAGS = -Werror              // 大概在90行左右
+
+   # 修改linux-low.c
+   把出错的struct siginfo结构体 替换为siginfo_t
+
+   # 修改linux-mips-low.c
+   把有冲突的函数全部注释掉, 168行 -
+
+   # 修改proc-service.c
+   把有冲突的函数全部注释掉, 136 - 153行
+
+   # 编译
+   执行make命令, 执行完毕后会在当前目录下生成gdbserver文件, 使用file命令验证是否为mips架构的程序
+
+
+7 常见问题
+-------------
+
+7.1 板子flash32M, 提示固件太大
+*********************************
+
+.. code:: c
+
+   vi target/linux/ramips/image/Makefile
+
+   # 修改
+   # Image/Build/Profile/MT7621=$(call BuildFirmware/Default8M/$(1),$(1),mt7621,MT7621)
+   Image/Build/Profile/MT7621=$(call BuildFirmware/Default32M/$(1),$(1),mt7621,MT7621)

@@ -10,3 +10,13 @@
 
    PS1='\h:\w\$ '
 
+2 ls所有的文件显示白色
+-------------------------------
+
+.. code:: shell
+
+   # vi ~/.bashrc
+   alias ls='ls --color=auto'
+
+  
+

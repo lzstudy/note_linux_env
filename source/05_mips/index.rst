@@ -1,7 +1,7 @@
-MT7621环境
+平台 - MIPS
 ========================================
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 5
 
-   mips-gdb.md
+   01_mtk/index
