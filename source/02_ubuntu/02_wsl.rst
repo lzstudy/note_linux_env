@@ -44,13 +44,13 @@ wsl配置
 .. code-block:: shell
 
     # 导出配置
-    wsl --export Ubuntu-18.04 F:\wsl\wsl.tar
+    wsl --export Ubuntu-18.04 E:\wsl18\wsl.tar
 
     # 确定在此目录下可以看见备份wsl.tar文件之后, 注销原有的wsl
     wsl --unregister Ubuntu-18.04
 
     # 将备份文件恢复到F:\wsl中去
-    wsl --import Ubuntu-18.04 F:\wsl D:\wsl\wsl.tar
+    wsl --import Ubuntu-18.04 E:\wsl E:\wsl18\wsl.tar
 
     # 恢复默认用户
     Ubuntu1804 config --default-user zw
